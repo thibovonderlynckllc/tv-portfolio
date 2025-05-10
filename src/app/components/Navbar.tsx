@@ -22,14 +22,11 @@ const Navbar = () => {
 
   const navLinks = (
     <div className="flex flex-col gap-8 items-center w-full">
-      <a href="#services" onClick={handleLinkClick} className="text-lg font-normal">
-        Services
-      </a>
-      <a href="#projects" onClick={handleLinkClick} className="text-lg font-normal">
-        Portfolio
-      </a>
       <a href="#skills" onClick={handleLinkClick} className="text-lg font-normal">
         Skills
+      </a>
+      <a href="#projects" onClick={handleLinkClick} className="text-lg font-normal">
+        Projects
       </a>
       <a href="#testimonials" onClick={handleLinkClick} className="text-lg font-normal">
         Testimonials
@@ -38,6 +35,17 @@ const Navbar = () => {
         <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-3 rounded-full cursor-pointer text-base font-semibold w-full max-w-xs">Contact me</button>
       </a>
     </div>
+  );
+
+  // Custom navlink component met gradient underline
+  const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    <a 
+      href={href} 
+      className="text-base font-normal relative group"
+    >
+      {children}
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
+    </a>
   );
 
   const navContent = (
@@ -60,18 +68,9 @@ const Navbar = () => {
       {/* Desktop menu */}
       <div className="hidden md:block">
         <div className="flex gap-12 items-center">
-          <a href="#services" className="text-base font-normal relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-500 after:transition-all hover:after:w-full after:duration-300">
-            Services
-          </a>
-          <a href="#projects" className="text-base font-normal relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-500 after:transition-all hover:after:w-full after:duration-300">
-            Portfolio
-          </a>
-          <a href="#skills" className="text-base font-normal relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-500 after:transition-all hover:after:w-full after:duration-300">
-            Skills
-          </a>
-          <a href="#testimonials" className="text-base font-normal relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-500 after:transition-all hover:after:w-full after:duration-300">
-            Testimonials
-          </a>
+          <NavLink href="#skills">Skills</NavLink>
+          <NavLink href="#projects">Projects</NavLink>
+          <NavLink href="#testimonials">Testimonials</NavLink>
           <a href="#contact" className="text-base font-normal">
             <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full cursor-pointer">Contact me</button>
           </a>
@@ -83,7 +82,7 @@ const Navbar = () => {
   return (
     <>
       {/* Original navbar */}
-      <nav className="container mx-auto pt-12 px-4 flex justify-between items-center relative">
+      <nav className="container mx-auto pt-12 px-4 sm:px-6 md:px-8 flex justify-between items-center relative">
         {navContent}
       </nav>
 
@@ -124,7 +123,7 @@ const Navbar = () => {
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className="fixed top-0 left-0 w-full z-50 bg-neutral-950/90 shadow-lg backdrop-blur-md transition-all duration-300"
           >
-            <div className="container mx-auto px-4 flex justify-between items-center py-4 relative">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 py-4 relative flex justify-between items-center">
               {navContent}
             </div>
           </motion.nav>
