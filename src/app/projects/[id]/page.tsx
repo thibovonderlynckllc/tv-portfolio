@@ -91,63 +91,65 @@ export default function ProjectDetail() {
           </div>
         </div>
         
-        {/* Desktop weergave - fixed left content en scrollende afbeelding */}
-        <div className="hidden lg:flex min-h-screen px-0">
-          <div className="w-1/3 h-screen flex items-center">
-            {/* Vaste linkerkant - fixed positie en verticaal gecentreerd */}
-            <div className="fixed flex flex-col z-10 max-w-[calc(33.333%-3rem)] top-1/2 -translate-y-1/2 overflow-hidden">
-              <h1 className="text-5xl font-bold text-white mb-6">
-                <span className="bg-gradient-to-r from-orange-500 to-white text-transparent bg-clip-text">
-                  {project.name}
-                </span>
-              </h1>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.displayCategory ? (
-                  project.displayCategory.map((cat, index) => (
-                    <span key={index} className="bg-neutral-800 text-white px-3 py-1 rounded-full text-sm">
-                      {cat}
-                    </span>
-                  ))
-                ) : (
-                  <span className="bg-neutral-800 text-white px-3 py-1 rounded-full text-sm">
-                    {project.category}
+        {/* Desktop weergave - grid layout met columns */}
+        <div className="hidden lg:block min-h-screen px-6 pt-6">
+          <div className="grid grid-cols-12 gap-8">
+            {/* Linker kolom - col-span-5 */}
+            <div className="col-span-6">
+              <div className="sticky top-24">
+                <h1 className="text-5xl font-bold text-white mb-6">
+                  <span className="bg-gradient-to-r from-orange-500 to-white text-transparent bg-clip-text">
+                    {project.name}
                   </span>
+                </h1>
+                
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.displayCategory ? (
+                    project.displayCategory.map((cat, index) => (
+                      <span key={index} className="bg-neutral-800 text-white px-3 py-1 rounded-full text-sm">
+                        {cat}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="bg-neutral-800 text-white px-3 py-1 rounded-full text-sm">
+                      {project.category}
+                    </span>
+                  )}
+                </div>
+                
+                <p className="text-neutral-400 text-base mb-8">
+                  {project.description}
+                </p>
+                
+                <div className="border-t border-neutral-800 pt-6 mb-8">
+                  <h3 className="text-white text-xl font-semibold mb-4">Technologies</h3>
+                  <p className="text-neutral-400">{project.technology}</p>
+                </div>
+            
+                
+                {project.link && project.category === 'Frontend Development' && (
+                  <a 
+                    href={project.link} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-fit text-white bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer"
+                  >
+                    Visit Project <ArrowUpRight size={16} />
+                  </a>
                 )}
               </div>
-              
-              <p className="text-neutral-400 text-base mb-8">
-                {project.description}
-              </p>
-              
-              <div className="border-t border-neutral-800 pt-6 mb-8">
-                <h3 className="text-white text-xl font-semibold mb-4">Technologies</h3>
-                <p className="text-neutral-400">{project.technology}</p>
-              </div>
-          
-              
-              {project.link && project.category === 'Frontend Development' && (
-                <a 
-                  href={project.link} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit text-white bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer"
-                >
-                  Visit Project <ArrowUpRight size={16} />
-                </a>
-              )}
             </div>
-          </div>
-          
-          {/* Scrollende rechterkant */}
-          <div className="w-1/2 ml-auto pt-[10vh] pl-4">
-            <Image 
-              src={project.fullPageImageUrl || project.imageUrl} 
-              alt={project.name} 
-              className="w-full rounded-xl"
-              width={500}
-              height={500}
-            />
+            
+            {/* Rechter kolom - col-span-7 */}
+            <div className="col-span-6 pt-[5vh]">
+              <Image 
+                src={project.fullPageImageUrl || project.imageUrl} 
+                alt={project.name} 
+                className="w-full rounded-xl"
+                width={800}
+                height={800}
+              />
+            </div>
           </div>
         </div>
       </div>
