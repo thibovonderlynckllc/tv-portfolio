@@ -95,7 +95,7 @@ export default function ProjectDetail() {
         <div className="hidden lg:flex min-h-screen px-0">
           <div className="w-1/3 h-screen flex items-center">
             {/* Vaste linkerkant - fixed positie en verticaal gecentreerd */}
-            <div className="fixed flex flex-col z-10 max-w-[calc(33.333%-24px)] top-1/2 -translate-y-1/2">
+            <div className="fixed flex flex-col z-10 max-w-[calc(33.333%-3rem)] top-1/2 -translate-y-1/2 overflow-hidden">
               <h1 className="text-5xl font-bold text-white mb-6">
                 <span className="bg-gradient-to-r from-orange-500 to-white text-transparent bg-clip-text">
                   {project.name}
@@ -140,7 +140,7 @@ export default function ProjectDetail() {
           </div>
           
           {/* Scrollende rechterkant */}
-          <div className="w-1/2 ml-auto pt-[10vh]">
+          <div className="w-1/2 ml-auto pt-[10vh] pl-4">
             <Image 
               src={project.fullPageImageUrl || project.imageUrl} 
               alt={project.name} 

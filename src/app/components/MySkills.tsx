@@ -5,6 +5,7 @@ import SectionTitle from './SectionTitle';
 
 const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: Skill & { isFirst?: boolean; isLast?: boolean; isFullWidth?: boolean }) => (
   <div className={`relative ${isFullWidth ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
+    {/* Dots are positioned outside the hover-affected element */}
     {isFirst && (
       <div className="absolute -bottom-8 -left-8 sm:-bottom-95 sm:-left-10 md:-bottom-115 lg:-bottom-14 lg:-left-14 grid grid-cols-6 gap-1 md:gap-1.5 lg:gap-2 z-0 hidden sm:grid">
         {[...Array(48)].map((_, i) => (
@@ -19,43 +20,46 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
         ))}
       </div>
     )}
-    <div className="relative">
-      {/* Solid backdrop to hide the dots */}
-      <div className="absolute inset-0 bg-neutral-900 rounded-xl z-5"></div>
-      {/* Card content */}
-      <div className={`p-6 sm:p-7 md:p-8 rounded-xl bg-neutral-900/80 hover:bg-orange-500/10 border border-transparent hover:border-orange-500/50 transition-all duration-300 flex flex-col items-center text-center group ${isFullWidth ? 'sm:h-[320px] lg:h-[350px] md:h-[380px] lg:h-[450px]' : 'h-[350px] sm:h-[400px] md:h-[420px] lg:h-[450px]'} hover:translate-y-[-5px] relative z-10`}>
-        {/* Top content wrapper */}
-        <div className="flex flex-col items-center flex-1">
-          {/* Cirkel met icoon */}
-          <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full outline outline-orange-500 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-            <Image
-              src={image}
-              alt={title}
-              width={32}
-              height={32}
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
-            />
+    {/* Card wrapper with transform effect */}
+    <div className="transition-transform duration-300 ease-in-out hover:-translate-y-2 relative z-10">
+      <div className="relative">
+        {/* Solid backdrop to hide the dots */}
+        <div className="absolute inset-0 bg-neutral-900 rounded-xl z-5"></div>
+        {/* Card content */}
+        <div className={`p-6 sm:p-7 md:p-8 rounded-xl bg-neutral-900/80 hover:bg-orange-500/10 border border-transparent hover:border-orange-500/50 transition-all duration-300 flex flex-col items-center text-center group ${isFullWidth ? 'sm:h-[320px] lg:h-[350px] md:h-[380px] lg:h-[450px]' : 'h-[350px] sm:h-[400px] md:h-[420px] lg:h-[450px]'} relative z-10`}>
+          {/* Top content wrapper */}
+          <div className="flex flex-col items-center flex-1">
+            {/* Cirkel met icoon */}
+            <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full outline outline-orange-500 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Image
+                src={image}
+                alt={title}
+                width={32}
+                height={32}
+                className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
+              />
+            </div>
+            
+            {/* Titel */}
+            <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-white">{title}</h3>
+            
+            {/* Drie strepen */}
+            <div className="flex gap-2 mb-4 sm:mb-6 md:mb-8">
+              <span className="w-3 md:w-4 h-0.5 bg-orange-500 rounded-full"></span>
+              <span className="w-3 md:w-4 h-0.5 bg-orange-500 rounded-full"></span>
+              <span className="w-3 md:w-4 h-0.5 bg-orange-500 rounded-full"></span>
+            </div>
+            
+            {/* Beschrijving */}
+            <p className={`text-sm sm:text-base text-neutral-200 group-hover:text-white transition-all duration-300 ${isFullWidth ? 'sm:max-w-md lg:max-w-none mx-auto' : ''}`}>{description}</p>
           </div>
           
-          {/* Titel */}
-          <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-white">{title}</h3>
-          
-          {/* Drie strepen */}
-          <div className="flex gap-2 mb-4 sm:mb-6 md:mb-8">
-            <span className="w-3 md:w-4 h-0.5 bg-orange-500 rounded-full"></span>
-            <span className="w-3 md:w-4 h-0.5 bg-orange-500 rounded-full"></span>
-            <span className="w-3 md:w-4 h-0.5 bg-orange-500 rounded-full"></span>
-          </div>
-          
-          {/* Beschrijving */}
-          <p className={`text-sm sm:text-base text-neutral-200 group-hover:text-white transition-all duration-300 ${isFullWidth ? 'sm:max-w-md lg:max-w-none mx-auto' : ''}`}>{description}</p>
+          {/* Read More knop */}
+          <button className="text-white bg-gradient-to-r from-orange-500 to-orange-600 px-4 sm:px-5 py-1.5 text-sm sm:text-base rounded-full flex items-center gap-1.5 sm:gap-2 cursor-pointer mt-6 sm:mt-7 md:mt-8 group/button">
+            See More
+            <MoveRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/button:translate-x-1 transition-transform duration-300" />
+          </button>
         </div>
-        
-        {/* Read More knop */}
-        <button className="text-white bg-gradient-to-r from-orange-500 to-orange-600 px-4 sm:px-5 py-1.5 text-sm sm:text-base rounded-full flex items-center gap-1.5 sm:gap-2 cursor-pointer mt-6 sm:mt-7 md:mt-8 group/button">
-          See More
-          <MoveRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/button:translate-x-1 transition-transform duration-300" />
-        </button>
       </div>
     </div>
   </div>
