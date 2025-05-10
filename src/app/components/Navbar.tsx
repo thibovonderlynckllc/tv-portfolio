@@ -82,7 +82,7 @@ const Navbar = () => {
   return (
     <>
       {/* Original navbar */}
-      <nav className="container mx-auto pt-12 px-4 sm:px-6 md:px-8 flex justify-between items-center relative">
+      <nav className="container mx-auto pt-12 px-4 md:px-0 flex justify-between items-center relative">
         {navContent}
       </nav>
 
