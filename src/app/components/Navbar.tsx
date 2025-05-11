@@ -12,7 +12,7 @@ const Navbar = () => {
       ([entry]) => {
         setShowSticky(!entry.isIntersecting);
       },
-      { root: null, threshold: 0 }
+      { root: null, threshold: 1 }
     );
     if (navbarRef.current) {
       observer.observe(navbarRef.current);
