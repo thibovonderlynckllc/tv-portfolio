@@ -33,7 +33,7 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
             <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full outline outline-orange-500 flex items-center justify-center mb-4 sm:mb-5 md:mb-6 group-hover:scale-110 transition-transform duration-300">
               <Image
                 src={image}
-                alt={title}
+                alt={`Skill: ${title} - Thibo Vonderlynck Next.js Web Developer`}
                 width={32}
                 height={32}
                 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"

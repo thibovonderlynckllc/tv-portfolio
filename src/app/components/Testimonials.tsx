@@ -37,7 +37,7 @@ const Testimonials = () => {
                   <div className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0 rounded-full overflow-hidden">
                     <Image 
                       src={testimonial.image} 
-                      alt={testimonial.name} 
+                      alt={`Testimonial van ${testimonial.name} - Thibo Vonderlynck Next.js Web Developer`} 
                       width={56} 
                       height={56} 
                       className="w-full h-full object-cover"

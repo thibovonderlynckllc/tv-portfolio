@@ -115,7 +115,7 @@ const MyProjects = () => {
                     <div className="overflow-hidden relative aspect-[16/9]">
                       <Image 
                         src={project.imageUrl} 
-                        alt={project.name} 
+                        alt={`Project ${project.name} - Thibo Vonderlynck Next.js Web Developer`} 
                         width={800} 
                         height={450} 
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 

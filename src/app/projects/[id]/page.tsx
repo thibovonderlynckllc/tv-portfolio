@@ -6,6 +6,7 @@ import { projects, Project } from '../../data/projects';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
 
 export default function ProjectDetail() {
   const params = useParams();
@@ -30,14 +31,18 @@ export default function ProjectDetail() {
   }
   
   return (
-    <div className="bg-neutral-950 min-h-screen relative pb-0 lg:pb-24">
-      <div className="container mx-auto pt-6 px-0">
-        <Link href="/#projects" className="text-white hover:text-orange-500 transition-colors inline-block">
+    <main className="bg-neutral-950 min-h-screen relative pb-0 lg:pb-24">
+      <Head>
+        <title>{`${project.name} | Project | Thibo Vonderlynck`}</title>
+        <meta name="description" content={`Bekijk het project ${project.name} van Thibo Vonderlynck, Next.js web developer en UX designer. ${project.description?.slice(0, 120)}`}/>
+      </Head>
+      <article className="container mx-auto pt-6 px-0">
+        <Link href="/#projects" className="text-white hover:text-orange-500 transition-colors inline-block" title="Terug naar projecten overzicht">
           ← Back to projects
         </Link>
         
         {/* Mobiele weergave - content en scrollende afbeelding onder elkaar */}
-        <div className="lg:hidden mt-10 mb-20 px-6">
+        <section className="lg:hidden mt-10 mb-20 px-6">
           <h1 className="text-4xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-orange-500 to-white text-transparent bg-clip-text">
               {project.name}
@@ -74,6 +79,7 @@ export default function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-colors"
+              title={`Bekijk live project: ${project.name}`}
             >
               Visit Project <ArrowUpRight size={16} />
             </a>
@@ -83,16 +89,16 @@ export default function ProjectDetail() {
           <div className="mt-10 pb-0">
             <Image 
               src={project.fullPageImageUrl || project.imageUrl} 
-              alt={project.name} 
+              alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`} 
               className="w-full rounded-xl"
               width={500}
               height={500}
             />
           </div>
-        </div>
+        </section>
         
         {/* Desktop weergave - grid layout met columns */}
-        <div className="hidden lg:block min-h-screen px-6 pt-6">
+        <section className="hidden lg:block min-h-screen px-6 pt-6">
           <div className="grid grid-cols-12 gap-8">
             {/* Linker kolom - col-span-5 */}
             <div className="col-span-6">
@@ -133,6 +139,7 @@ export default function ProjectDetail() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-fit text-white bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-1.5 rounded-full inline-flex items-center gap-2 cursor-pointer"
+                    title={`Bekijk live project: ${project.name}`}
                   >
                     Visit Project <ArrowUpRight size={16} />
                   </a>
@@ -144,18 +151,18 @@ export default function ProjectDetail() {
             <div className="col-span-6 pt-[5vh]">
               <Image 
                 src={project.fullPageImageUrl || project.imageUrl} 
-                alt={project.name} 
+                alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`} 
                 className="w-full rounded-xl"
                 width={800}
                 height={800}
               />
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
       
       {/* Extra element to ensure background extends fully */}
       <div className="absolute inset-0 -z-10 bg-neutral-950 h-full w-full"></div>
-    </div>
+    </main>
   );
 } 
