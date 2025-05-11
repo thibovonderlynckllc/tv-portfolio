@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="py-10 bg-neutral-950 sm:py-12 bg-neutral-950">
       <div className="container mx-auto flex flex-col items-center gap-8 px-4 sm:px-6 md:px-8 text-center">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal">Thibo</h2>
+        <Link href="#header" className="text-2xl sm:text-3xl md:text-4xl font-normal hover:text-orange-500 transition-colors duration-300">Thibo</Link>
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center">
           <Link href="#skills" className="text-base font-normal relative group">
             Skills

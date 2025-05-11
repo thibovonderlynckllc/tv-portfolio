@@ -4,6 +4,7 @@ import { skills, Skill } from "../data/skills";
 import { MoveRight } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: Skill & { isFirst?: boolean; isLast?: boolean; isFullWidth?: boolean }) => (
   <motion.div 
@@ -51,7 +52,7 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
         {/* Solid backdrop to hide the dots */}
         <div className="absolute inset-0 bg-neutral-900 rounded-xl z-5"></div>
         {/* Card content */}
-        <div className={`p-6 sm:p-7 md:p-8 rounded-xl bg-neutral-900/80 hover:bg-orange-500/10 border border-transparent hover:border-orange-500/50 transition-all duration-300 flex flex-col items-center text-center group ${isFullWidth ? 'sm:h-[320px] lg:h-[350px] md:h-[380px] lg:h-[450px]' : 'h-[350px] sm:h-[400px] md:h-[420px] lg:h-[450px]'} relative z-10`}>
+        <div className={`p-6 sm:p-7 md:p-8 rounded-xl bg-neutral-900/80 hover:bg-orange-500/10 border border-transparent hover:border-orange-500/50 transition-all duration-300 flex flex-col items-center text-center group h-[350px] sm:h-[400px] md:h-[420px] lg:h-[450px] xl:h-[450px] relative z-10`}>
           {/* Top content wrapper */}
           <div className="flex flex-col items-center flex-1">
             {/* Cirkel met icoon */}
@@ -106,15 +107,16 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
           </div>
           
           {/* Read More knop */}
-          <motion.button 
-            className="text-white bg-gradient-to-r from-orange-500 to-orange-600 px-4 sm:px-5 py-1.5 text-sm sm:text-base rounded-full flex items-center gap-1.5 sm:gap-2 cursor-pointer mt-6 sm:mt-7 md:mt-8 group/button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            See More
-            <MoveRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/button:translate-x-1 transition-transform duration-300" />
-          </motion.button>
+          <Link href="#projects">
+            <motion.button 
+              className="text-white bg-gradient-to-r from-orange-500 to-orange-600 px-4 sm:px-5 py-1.5 text-sm sm:text-base rounded-full flex items-center gap-1.5 sm:gap-2 cursor-pointer mt-6 sm:mt-7 md:mt-8 group/button"
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              See More
+              <MoveRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover/button:translate-x-1 transition-transform duration-300" />
+            </motion.button>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -133,7 +135,7 @@ const MySkills = () => {
       >
         <SectionTitle>My Skills</SectionTitle>
         <motion.p 
-          className="text-center text-base sm:text-lg mb-10 sm:mb-12 md:mb-16 max-w-2xl mx-auto"
+          className="text-center text-base sm:text-lg mb-8 sm:mb-12 md:mb-16 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -142,7 +144,7 @@ const MySkills = () => {
           Building fast, scalable, and user-friendly web apps with modern tools.
         </motion.p>
       </motion.div>
-      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12 px-4 sm:px-6 md:px-8">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12 px-4 sm:px-6 md:px-8">
         {skills.map((skill, index) => (
           <SkillCard 
             key={skill.title} 
