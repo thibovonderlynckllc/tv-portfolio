@@ -1,25 +1,26 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [showSticky, setShowSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > 80 && currentScrollY > lastScrollY) {
-        setShowSticky(true);
-      } else if (currentScrollY < lastScrollY || currentScrollY <= 80) {
-        setShowSticky(false);
-      }
-      setLastScrollY(currentScrollY);
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        setShowSticky(!entry.isIntersecting);
+      },
+      { root: null, threshold: 0 }
+    );
+    if (navbarRef.current) {
+      observer.observe(navbarRef.current);
+    }
+    return () => {
+      if (navbarRef.current) observer.unobserve(navbarRef.current);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   // Sluit menu bij klik op link (alleen mobiel)
   const handleLinkClick = () => {
@@ -88,7 +89,7 @@ const Navbar = () => {
   return (
     <>
       {/* Original navbar */}
-      <nav className="container mx-auto pt-12 px-4 md:px-0 flex justify-between items-center relative">
+      <nav ref={navbarRef} className="container mx-auto pt-12 px-4 md:px-0 flex justify-between items-center relative">
         {navContent}
       </nav>
 
