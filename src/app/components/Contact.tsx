@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle';
 
 const Contact = () => {
   return (
-    <div className="w-full bg-neutral-950/50 py-24 relative overflow-hidden" id="contact">
+    <div className="w-full py-24 relative overflow-hidden" id="contact">
       <div className="container mx-auto">
         <div className="flex flex-col gap-4 mb-12 px-4 sm:px-6 md:px-8">
           <SectionTitle>Let&apos;s work together!</SectionTitle>

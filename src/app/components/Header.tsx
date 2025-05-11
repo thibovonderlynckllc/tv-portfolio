@@ -31,7 +31,7 @@ const Header = () => {
           </div>
           <Image 
             className="[filter:drop-shadow(0_0_200px_rgba(249,115,22,0.6))] relative z-10 rounded-full border-[0.5px] border-white/10 w-[250px] h-[250px]" 
-            src="/images/pfp.png" 
+            src="/images/pfp.webp" 
             alt="Profielfoto Thibo Vonderlynck Next.js Web Developer en UX Designer" 
             width={400} 
             height={400}

@@ -5,7 +5,7 @@ import SectionTitle from './SectionTitle';
 
 const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: Skill & { isFirst?: boolean; isLast?: boolean; isFullWidth?: boolean }) => (
   <div className={`relative ${isFullWidth ? 'sm:col-span-2 lg:col-span-1' : ''}`}>
-    {/* Dots are positioned outside the hover-affected element */}
+
     {isFirst && (
       <div className="absolute -bottom-8 -left-8 sm:-bottom-95 sm:-left-10 md:-bottom-115 lg:-bottom-14 lg:-left-14 grid grid-cols-6 gap-1 md:gap-1.5 lg:gap-2 z-0 hidden sm:grid">
         {[...Array(48)].map((_, i) => (
@@ -20,7 +20,7 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
         ))}
       </div>
     )}
-    {/* Card wrapper with transform effect */}
+    {/* Card wrapper */}
     <div className="transition-transform duration-300 ease-in-out hover:-translate-y-2 relative z-10">
       <div className="relative">
         {/* Solid backdrop to hide the dots */}

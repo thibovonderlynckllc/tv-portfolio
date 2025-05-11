@@ -15,7 +15,7 @@ const Testimonials = () => {
         <p className="text-center text-neutral-200 text-base sm:text-lg mb-16">Hear what my clients have to say about working with me.</p>
       </div>
       
-      {/* Marquee slider - automatisch bewegend - buiten de container */}
+      {/* Marquee slider */}
       <div className="w-full">
         <Marquee
           speed={35}
@@ -24,9 +24,9 @@ const Testimonials = () => {
           gradientColor="#111111"
           gradientWidth={60}
         >
-          {testimonials.map((testimonial) => (
+          {[...testimonials, ...testimonials, ...testimonials].map((testimonial, idx) => (
             <div 
-              key={testimonial.id} 
+              key={testimonial.id + '-' + idx} 
               className="mx-3 sm:mx-4"
             >
               <div className="flex flex-col justify-between h-[220px] w-[350px] sm:w-[450px] md:w-[600px] bg-gradient-to-r from-transparent to-neutral-900/40 border border-orange-500/20 rounded-2xl p-6 sm:p-7 md:p-8 shadow-lg">

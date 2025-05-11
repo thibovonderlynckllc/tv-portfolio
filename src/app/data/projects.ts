@@ -63,7 +63,7 @@ export const projects: Project[] = [
     category: 'Graphic Design',
     technology: 'Adobe Photoshop',
     imageUrl: '/images/projects/graphicdesign/blackfriday.webp',
-    fullPageImageUrl: '/images/projects/graphicdesign/blackfridayfullpage.webp',
+    fullPageImageUrl: '/images/projects/graphicdesign/blackfriday.webp',
     tags: ['Advertising', 'Print', 'Digital', 'E-commerce'],
     link: 'https://celadon-marzipan-bd54a9.netlify.app/',
   },

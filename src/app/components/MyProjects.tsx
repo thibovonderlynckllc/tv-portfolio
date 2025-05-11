@@ -18,7 +18,6 @@ const MyProjects = () => {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  // Check screen size for mobile view
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
