@@ -6,9 +6,9 @@ const Contact = () => {
   return (
     <div className="w-full py-24 relative overflow-hidden" id="contact">
       <div className="container mx-auto">
-        <div className="flex flex-col gap-4 mb-12 px-4 sm:px-6 md:px-8">
+        <div className="flex flex-col mb-12 px-4 sm:px-6 md:px-8">
           <SectionTitle>Let&apos;s work together!</SectionTitle>
-          <p className="text-center text-neutral-200 text-base sm:text-lg mb-8">Have a project in mind? I&apos;d love to help you build a fast, user-friendly web experience!</p>
+          <p className="text-center text-neutral-200 text-base sm:text-lg mb-4">Have a project in mind? I&apos;d love to help you build a fast, user-friendly web experience!</p>
         </div>
 
         <div className="max-w-4xl mx-auto">

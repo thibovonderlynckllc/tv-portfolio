@@ -74,7 +74,7 @@ export default function ProjectDetail() {
         
           
           {project.link && project.category === 'Frontend Development' && (
-            <a 
+            <Link 
               href={project.link} 
               target="_blank"
               rel="noopener noreferrer"
@@ -82,7 +82,7 @@ export default function ProjectDetail() {
               title={`Bekijk live project: ${project.name}`}
             >
               Visit Project <ArrowUpRight size={16} />
-            </a>
+            </Link>
           )}
           
           {/* Op mobiel de foto met padding onderaan */}
@@ -134,7 +134,7 @@ export default function ProjectDetail() {
             
                 
                 {project.link && project.category === 'Frontend Development' && (
-                  <a 
+                  <Link 
                     href={project.link} 
                     target="_blank"
                     rel="noopener noreferrer"
@@ -142,7 +142,7 @@ export default function ProjectDetail() {
                     title={`Bekijk live project: ${project.name}`}
                   >
                     Visit Project <ArrowUpRight size={16} />
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>

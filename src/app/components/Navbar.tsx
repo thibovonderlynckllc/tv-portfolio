@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from "next/link";
 
 const Navbar = () => {
   const [showSticky, setShowSticky] = useState(false);
@@ -29,30 +30,30 @@ const Navbar = () => {
 
   const navLinks = (
     <div className="flex flex-col gap-8 items-center w-full">
-      <a href="#skills" onClick={handleLinkClick} className="text-lg font-normal">
+      <Link href="#skills" onClick={handleLinkClick} className="text-lg font-normal">
         Skills
-      </a>
-      <a href="#projects" onClick={handleLinkClick} className="text-lg font-normal">
+      </Link>
+      <Link href="#projects" onClick={handleLinkClick} className="text-lg font-normal">
         Projects
-      </a>
-      <a href="#testimonials" onClick={handleLinkClick} className="text-lg font-normal">
+      </Link>
+      <Link href="#testimonials" onClick={handleLinkClick} className="text-lg font-normal">
         Testimonials
-      </a>
-      <a href="#contact" onClick={handleLinkClick} className="w-full flex justify-center">
+      </Link>
+      <Link href="#contact" onClick={handleLinkClick} className="w-full flex justify-center">
         <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-3 rounded-full cursor-pointer text-base font-semibold w-full max-w-xs">Contact me</button>
-      </a>
+      </Link>
     </div>
   );
 
   // Custom navlink component met gradient underline
   const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-    <a 
+    <Link 
       href={href} 
       className="text-base font-normal relative group"
     >
       {children}
       <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
-    </a>
+    </Link>
   );
 
   const navContent = (
@@ -78,9 +79,9 @@ const Navbar = () => {
           <NavLink href="#skills">Skills</NavLink>
           <NavLink href="#projects">Projects</NavLink>
           <NavLink href="#testimonials">Testimonials</NavLink>
-          <a href="#contact" className="text-base font-normal">
+          <Link href="#contact" className="text-base font-normal">
             <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full cursor-pointer">Contact me</button>
-          </a>
+          </Link>
         </div>
       </div>
     </>
