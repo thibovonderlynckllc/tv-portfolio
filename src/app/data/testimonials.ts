@@ -12,7 +12,7 @@ export const testimonials: Testimonial[] = [
     name: 'Aron',
     company: 'FocusTrading',
     image: '/images/testimonials/focustrading.webp',
-    text: 'Working with Thibo was a breeze. He understood exactly what our Forex AI business needed and delivered a site that’s both fast and visually impressive. Highly recommended!',
+    text: 'Working with Thibo was a breeze. He understood exactly what our Forex AI business needed and delivered a site that’s both fast and visually impressive.',
   },
   {
     id: 2,
