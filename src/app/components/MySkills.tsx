@@ -15,7 +15,7 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
     transition={{ duration: 0.5, ease: "easeOut" }}
   >
     {isFirst && (
-      <div className="absolute -bottom-8 -left-8 sm:-bottom-95 sm:-left-10 md:-bottom-115 lg:-bottom-14 lg:-left-14 grid grid-cols-6 gap-1 md:gap-1.5 lg:gap-2 z-0 hidden sm:grid">
+      <div className="absolute -bottom-8 -left-8 sm:-bottom-110 sm:-left-10 md:-bottom-125 lg:-bottom-14 lg:-left-14 grid grid-cols-6 gap-1 md:gap-1.5 lg:gap-2 z-0 hidden sm:grid">
         {[...Array(48)].map((_, i) => (
           <motion.div 
             key={`dot-bottom-${i}`} 
@@ -144,7 +144,7 @@ const MySkills = () => {
           Building fast, scalable, and user-friendly web apps with modern tools.
         </motion.p>
       </motion.div>
-      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12 px-4 sm:px-6 md:px-8">
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mt-8 sm:mt-0 px-4 sm:px-6 md:px-8">
         {skills.map((skill, index) => (
           <SkillCard 
             key={skill.title} 
