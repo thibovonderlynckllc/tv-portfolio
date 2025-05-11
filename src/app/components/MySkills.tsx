@@ -45,7 +45,6 @@ const SkillCard = ({ title, description, image, isFirst, isLast, isFullWidth }: 
     {/* Card wrapper */}
     <motion.div 
       className="transition-transform duration-300 ease-in-out hover:-translate-y-2 relative z-10"
-      whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
     >
       <div className="relative">
