@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [showSticky, setShowSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navbarRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new window.IntersectionObserver(
@@ -14,11 +14,11 @@ const Navbar = () => {
       },
       { root: null, threshold: 1 }
     );
-    if (navbarRef.current) {
-      observer.observe(navbarRef.current);
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
     }
     return () => {
-      if (navbarRef.current) observer.unobserve(navbarRef.current);
+      if (sentinelRef.current) observer.unobserve(sentinelRef.current);
     };
   }, []);
 
@@ -89,9 +89,10 @@ const Navbar = () => {
   return (
     <>
       {/* Original navbar */}
-      <nav ref={navbarRef} className="container mx-auto pt-12 px-4 md:px-0 flex justify-between items-center relative">
+      <nav className="container mx-auto pt-12 px-4 md:px-0 flex justify-between items-center relative">
         {navContent}
       </nav>
+      <div ref={sentinelRef} style={{ height: 1 }}></div>
 
       {/* Mobile menu */}
       <AnimatePresence>
