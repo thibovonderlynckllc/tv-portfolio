@@ -15,8 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Thibo Vonderlynck | Next.js Web Developer & UX Designer</title>
+        <title>Thibo Vonderlynck | Portfolio & Next.js Web Developer</title>
         <meta name="description" content="Thibo Vonderlynck is een ervaren Next.js web developer en UX designer. Bekijk zijn portfolio, projecten en skills. Samen bouwen aan jouw digitale succes!" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <body className={`${sora.className} antialiased`}>
         <main>{children}</main>
