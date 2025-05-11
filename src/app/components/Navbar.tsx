@@ -5,15 +5,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [showSticky, setShowSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky navbar after scrolling 80px
-      setShowSticky(window.scrollY > 80);
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > 80 && currentScrollY > lastScrollY) {
+        setShowSticky(true);
+      } else if (currentScrollY < lastScrollY || currentScrollY <= 80) {
+        setShowSticky(false);
+      }
+      setLastScrollY(currentScrollY);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Sluit menu bij klik op link (alleen mobiel)
   const handleLinkClick = () => {

@@ -30,7 +30,7 @@ export default function ProjectDetail() {
   }
   
   return (
-    <div className="bg-neutral-950 min-h-screen relative pb-24">
+    <div className="bg-neutral-950 min-h-screen relative pb-0 lg:pb-24">
       <div className="container mx-auto pt-6 px-0">
         <Link href="/#projects" className="text-white hover:text-orange-500 transition-colors inline-block">
           ← Back to projects
@@ -80,7 +80,7 @@ export default function ProjectDetail() {
           )}
           
           {/* Op mobiel de foto met padding onderaan */}
-          <div className="mt-10 pb-24">
+          <div className="mt-10 pb-0">
             <Image 
               src={project.fullPageImageUrl || project.imageUrl} 
               alt={project.name} 
