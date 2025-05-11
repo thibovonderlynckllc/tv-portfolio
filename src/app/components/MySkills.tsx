@@ -70,7 +70,7 @@ const MySkills = () => {
     <div className="w-full bg-neutral-950 pt-16 sm:pt-20 md:pt-24 pb-16 sm:pb-20 md:pb-[9.5rem]" id="skills">
       <div className="container mx-auto flex flex-col px-4 sm:px-6 md:px-8">
         <SectionTitle>My Skills</SectionTitle>
-        <p className="text-center text-sm sm:text-base md:text-lg mb-10 sm:mb-12 md:mb-16 max-w-2xl mx-auto">Building fast, scalable, and user-friendly web apps with modern tools.</p>
+        <p className="text-center text-base sm:text-lg mb-10 sm:mb-12 md:mb-16 max-w-2xl mx-auto">Building fast, scalable, and user-friendly web apps with modern tools.</p>
       </div>
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12 px-4 sm:px-6 md:px-8">
         {skills.map((skill, index) => (

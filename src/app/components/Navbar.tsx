@@ -51,7 +51,7 @@ const Navbar = () => {
   const navContent = (
     <>
       <div>
-        <h2 className="text-4xl font-normal">Thibo</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal">Thibo</h2>
       </div>
       {/* Mobile menu button */}
       <button
@@ -97,7 +97,7 @@ const Navbar = () => {
             className="md:hidden fixed top-0 left-0 w-full h-full bg-neutral-950/95 backdrop-blur-md z-40 flex flex-col items-center px-4"
           >
             <div className="w-full flex justify-between items-center pt-8 pb-12">
-              <h2 className="text-4xl font-normal">Thibo</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal">Thibo</h2>
               <button
                 className="p-2"
                 onClick={() => setIsMenuOpen(false)}

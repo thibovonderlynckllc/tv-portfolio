@@ -6,14 +6,14 @@ const Contact = () => {
   return (
     <div className="w-full bg-neutral-950/50 py-24 relative overflow-hidden" id="contact">
       <div className="container mx-auto">
-        <div className="flex flex-col gap-4 mb-12">
+        <div className="flex flex-col gap-4 mb-12 px-4 sm:px-6 md:px-8">
           <SectionTitle>Let&apos;s work together!</SectionTitle>
-          <p className="text-center mb-8">Have a project in mind? I&apos;d love to help you build a fast, user-friendly web experience!</p>
+          <p className="text-center text-neutral-200 text-base sm:text-lg mb-8">Have a project in mind? I&apos;d love to help you build a fast, user-friendly web experience!</p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="flex justify-center">
-            <div className="flex items-center gap-4 bg-neutral-900 border border-transparent rounded-lg px-5 py-3 hover:bg-orange-500/10 hover:border-orange-500/50 transition-all duration-300">
+          <div className="flex justify-center px-4 sm:px-6">
+            <div className="max-w-full overflow-x-auto whitespace-nowrap flex items-center gap-4 bg-neutral-900 border border-transparent rounded-lg px-5 py-3 hover:bg-orange-500/10 hover:border-orange-500/50 transition-all duration-300">
               <span className="text-white text-lg select-all">thibovonderlynckllc@gmail.com</span>
               <CopyButton email="thibovonderlynckllc@gmail.com" />
             </div>

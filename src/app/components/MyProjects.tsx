@@ -50,7 +50,7 @@ const MyProjects = () => {
       <div className="absolute -top-32 sm:-top-40 md:-top-48 right-0 w-[250px] h-[200px] sm:w-[450px] sm:h-[400px] md:w-[700px] md:h-[600px] bg-orange-500 opacity-10 rounded-full blur-[80px] sm:blur-[120px] md:blur-[160px] -z-10"></div>
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <SectionTitle level={1}>My Recent Projects</SectionTitle>
-        <p className="text-center text-neutral-200 text-sm sm:text-base md:text-lg mb-8 sm:mb-12 md:mb-16 max-w-2xl mx-auto">Explore my latest work where I transform concepts into stunning web experiences.</p>
+        <p className="text-center text-neutral-200 sm:text-base sm:text-lg mb-8 sm:mb-12 md:mb-16 max-w-2xl mx-auto">Explore my latest work where I transform concepts into stunning web experiences.</p>
       </div>
       
       {/* Category tabs - responsive version */}
