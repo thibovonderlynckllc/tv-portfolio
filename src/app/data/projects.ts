@@ -37,7 +37,7 @@ export const projects: Project[] = [
   {
     id: 3,
     name: 'Omega Trading',
-    description: 'Omega Trading is een platform voor cryptovaluta-handelaren met geavanceerde grafiekfuncties, marktanalyse en handelstools. Dit project vereiste een complexe frontend-implementatie met real-time data visualisatie, gebruikersauthenticatie en een reactief ontwerp. Het platform biedt gebruikers de mogelijkheid om verschillende markten te volgen, geautomatiseerde handelsstrategieën in te stellen en hun portefeuille te beheren vanaf elk apparaat.',
+    description: 'Omega Trading is een platform voor cryptovaluta-handelaren met geavanceerde grafiekfuncties, marktanalyse en handelstools. Het project draaide om de lancering van een nieuwe cryptomunt, waarvoor een complexe frontend-implementatie nodig was met real-time datavisualisatie, gebruikersauthenticatie en een reactief ontwerp. Het platform stelt gebruikers in staat om verschillende markten te volgen, geautomatiseerde handelsstrategieën in te stellen en hun portefeuille te beheren vanaf elk apparaat.',
     category: 'Frontend Development',
     technology: 'HTML / CSS / JS',
     imageUrl: '/images/projects/webdevelopment/omega.webp',
