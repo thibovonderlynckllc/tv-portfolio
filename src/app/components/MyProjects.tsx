@@ -10,6 +10,7 @@ import Image from 'next/image';
 const categories = [
   "All",
   "Frontend Development",
+  "Full-Stack",
   "Graphic Design",
 ];
 
@@ -56,7 +57,7 @@ const MyProjects = () => {
       <div className="border-t border-b border-neutral-800 w-full mb-8 sm:mb-10 md:mb-12">
         <div className="container mx-auto relative px-4 sm:px-6 md:px-8">
           <div className="flex justify-center">
-            <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} divide-y md:divide-y-0 md:divide-x divide-neutral-800 md:border-x border-neutral-800 w-full md:w-auto`}>
+            <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-4'} divide-y md:divide-y-0 md:divide-x divide-neutral-800 md:border-x border-neutral-800 w-full md:w-auto`}>
               {categories.map((category) => (
                 <button
                   key={category}

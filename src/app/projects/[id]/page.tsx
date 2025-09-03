@@ -73,7 +73,7 @@ export default function ProjectDetail() {
           </div>
         
           
-          {project.link && project.category === 'Frontend Development' && (
+          {project.link && (project.category === 'Frontend Development' || project.category === 'Full-Stack') && (
             <Link 
               href={project.link} 
               target="_blank"
@@ -133,7 +133,7 @@ export default function ProjectDetail() {
                 </div>
             
                 
-                {project.link && project.category === 'Frontend Development' && (
+                {project.link && (project.category === 'Frontend Development' || project.category === 'Full-Stack') && (
                   <Link 
                     href={project.link} 
                     target="_blank"
