@@ -93,6 +93,10 @@ export default function ProjectDetail() {
               className="w-full rounded-xl"
               width={500}
               height={500}
+              sizes="100vw"
+              priority
+              loading="eager"
+              quality={85}
             />
           </div>
         </section>
@@ -155,6 +159,10 @@ export default function ProjectDetail() {
                 className="w-full rounded-xl"
                 width={800}
                 height={800}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                loading="eager"
+                quality={85}
               />
             </div>
           </div>
