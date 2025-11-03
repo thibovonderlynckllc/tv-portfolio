@@ -1,41 +1,49 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import { projects, Project } from '../../data/projects';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Head from 'next/head';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
-export default function ProjectDetail() {
-  const params = useParams();
-  const [project, setProject] = useState<Project | null>(null);
-  
-  useEffect(() => {
-    if (params?.id) {
-      const projectId = parseInt(params.id as string);
-      const foundProject = projects.find(p => p.id === projectId);
-      if (foundProject) {
-        setProject(foundProject);
-      }
-    }
-  }, [params]);
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const projectId = parseInt(id);
+  const project = projects.find(p => p.id === projectId);
   
   if (!project) {
-    return (
-      <div className="min-h-screen bg-neutral-950 flex items-center justify-center">
-        <div className="text-white">Loading project...</div>
-      </div>
-    );
+    return {
+      title: 'Project Not Found | Thibo Vonderlynck',
+    };
   }
+  
+  const imageUrl = project.fullPageImageUrl || project.imageUrl;
+  
+  return {
+    title: `${project.name} | Project | Thibo Vonderlynck`,
+    description: `Bekijk het project ${project.name} van Thibo Vonderlynck, Next.js web developer en UX designer. ${project.description?.slice(0, 120)}`,
+    other: {
+      'preload-image': imageUrl,
+    },
+  };
+}
+
+export default async function ProjectDetail({ params }: PageProps) {
+  const { id } = await params;
+  const projectId = parseInt(id);
+  const project = projects.find(p => p.id === projectId);
+  
+  if (!project) {
+    notFound();
+  }
+  
+  const imageUrl = project.fullPageImageUrl || project.imageUrl;
   
   return (
     <main className="bg-neutral-950 min-h-screen relative pb-0 lg:pb-24">
-      <Head>
-        <title>{`${project.name} | Project | Thibo Vonderlynck`}</title>
-        <meta name="description" content={`Bekijk het project ${project.name} van Thibo Vonderlynck, Next.js web developer en UX designer. ${project.description?.slice(0, 120)}`}/>
-      </Head>
       <article className="container mx-auto pt-6 px-0">
         <Link href="/#projects" className="text-white hover:text-orange-500 transition-colors inline-block" title="Terug naar projecten overzicht">
           ← Back to projects
@@ -88,14 +96,13 @@ export default function ProjectDetail() {
           {/* Op mobiel de foto met padding onderaan */}
           <div className="mt-10 pb-0">
             <Image 
-              src={project.fullPageImageUrl || project.imageUrl} 
+              src={imageUrl} 
               alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`} 
               className="w-full rounded-xl"
-              width={500}
-              height={500}
+              width={1200}
+              height={1600}
               sizes="100vw"
               priority
-              loading="eager"
               quality={85}
             />
           </div>
@@ -154,14 +161,13 @@ export default function ProjectDetail() {
             {/* Rechter kolom - col-span-7 */}
             <div className="col-span-6 pt-[5vh]">
               <Image 
-                src={project.fullPageImageUrl || project.imageUrl} 
+                src={imageUrl} 
                 alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`} 
                 className="w-full rounded-xl"
-                width={800}
-                height={800}
+                width={1200}
+                height={1600}
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
-                loading="eager"
                 quality={85}
               />
             </div>
