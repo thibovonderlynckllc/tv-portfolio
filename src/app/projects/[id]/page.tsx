@@ -1,4 +1,4 @@
-import { projects, Project } from '../../data/projects';
+import { projects } from '../../data/projects';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';

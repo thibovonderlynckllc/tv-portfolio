@@ -15,11 +15,12 @@ const Navbar = () => {
       },
       { root: null, threshold: 1 }
     );
-    if (sentinelRef.current) {
-      observer.observe(sentinelRef.current);
+    const element = sentinelRef.current;
+    if (element) {
+      observer.observe(element);
     }
     return () => {
-      if (sentinelRef.current) observer.unobserve(sentinelRef.current);
+      if (element) observer.unobserve(element);
     };
   }, []);
 
