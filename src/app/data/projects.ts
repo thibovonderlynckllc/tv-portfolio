@@ -89,4 +89,15 @@ export const projects: Project[] = [
     tags: ['Web Application', 'Full-Stack', 'TypeScript', 'Responsive'],
     link: 'https://www.dreamlovers.be/',
   },
+  {
+    id: 8,
+    name: 'NQ Blade',
+    description: 'NQBlade is a fully automated trading bot I built for NQ Futures (E-mini Nasdaq-100), designed for precise, hands-off algorithmic trading. I created it to eliminate emotional decisions with 24/7 execution, strong risk controls (<15% max drawdown target), and consistent results.',
+    category: 'Full-Stack',
+    technology: 'Next.js / TypeScript / Tailwind',
+    imageUrl: '/images/projects/fullstack/nqbladeposter.webp',
+    fullPageImageUrl: '/images/projects/fullstack/nqbladefullpage.png',
+    tags: ['Web Application', 'Full-Stack', 'TypeScript', 'Responsive'],
+    link: 'https://nqblade.com/',
+  },
 ];
