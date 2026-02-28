@@ -8,7 +8,7 @@ export interface Skill {
 export const skills: Skill[] = [
   {
     title: 'Front/Back-end',
-    description: 'Expert in building modern, responsive web applications using Next.js, TypeScript, and Tailwind CSS. Experienced with backend technologies like Supabase and PayloadCMS.',
+    description: 'Building modern web apps with Next.js, TypeScript, Supabase and PayloadCMS.',
     highlight: true,
     image: '/images/icons/frontend.svg',
   },
