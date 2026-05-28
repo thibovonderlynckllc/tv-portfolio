@@ -1,7 +1,7 @@
 import { projects } from '../../data/projects';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
+import ProjectImage from '../../components/ProjectImage';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -95,15 +95,10 @@ export default async function ProjectDetail({ params }: PageProps) {
           
           {/* Op mobiel de foto met padding onderaan */}
           <div className="mt-10 pb-0">
-            <Image 
-              src={imageUrl} 
-              alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`} 
-              className="w-full rounded-xl"
-              width={1200}
-              height={1600}
+            <ProjectImage
+              src={imageUrl}
+              alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`}
               sizes="100vw"
-              priority
-              quality={85}
             />
           </div>
         </section>
@@ -160,15 +155,10 @@ export default async function ProjectDetail({ params }: PageProps) {
             
             {/* Rechter kolom - col-span-7 */}
             <div className="col-span-6 pt-[5vh]">
-              <Image 
-                src={imageUrl} 
-                alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`} 
-                className="w-full rounded-xl"
-                width={1200}
-                height={1600}
+              <ProjectImage
+                src={imageUrl}
+                alt={`Screenshot van project ${project.name} - Thibo Vonderlynck Next.js web developer`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-                quality={85}
               />
             </div>
           </div>

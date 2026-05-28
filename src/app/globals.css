@@ -11,12 +11,27 @@
 }
 
 html {
+  scroll-behavior: auto;
+}
+
+html:focus-within {
   scroll-behavior: smooth;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #111111;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, #171717 25%, #262626 50%, #171717 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
 }
 
 /* Scrollbar Styling */

@@ -9,9 +9,22 @@ export interface Project {
   fullPageImageUrl?: string;
   tags: string[];
   link?: string;
+  badge?: string;
 }
 
 export const projects: Project[] = [
+  {
+    id: 9,
+    name: 'Ask Maeve',
+    description: 'Ask Maeve is an AI-powered study platform founded by Richard Cosemans and Viktor Vanmarcke that helps students learn faster and prepare smarter for exams, offering instant summaries, personalized feedback, practice questions, and planning tools all in one place. During my 3-month school internship, I designed and coded their complete website from the ground up, working closely with the founders who provided guidance and direction throughout the process. The result is a clean, modern, and fully responsive website that reflects the brand identity and clearly communicates the platform\'s value proposition.',
+    category: 'Frontend Development',
+    technology: 'Astro / React / TypeScript / Tailwind / Supabase',
+    imageUrl: '/images/projects/webdevelopment/maeve.webp',
+    fullPageImageUrl: '/images/projects/webdevelopment/maevefullpage.webp',
+    tags: ['Startup', 'Responsive', 'UI/UX', 'Branding'],
+    link: 'https://www.ask-maeve.com/',
+    badge: 'Internship',
+  },
   {
     id: 1,
     name: 'FocusTrading',

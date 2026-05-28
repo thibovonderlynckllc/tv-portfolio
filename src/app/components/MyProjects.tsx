@@ -120,6 +120,11 @@ const MyProjects = () => {
                         height={450} 
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                       />
+                      {project.badge && (
+                        <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                          {project.badge}
+                        </span>
+                      )}
                     </div>
                     <div className="py-5 sm:py-6 md:py-8 px-4 sm:px-5 md:px-6">
                       <div className="flex justify-between items-start">
