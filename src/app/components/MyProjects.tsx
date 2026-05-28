@@ -133,7 +133,7 @@ const MyProjects = () => {
                           <p className="text-neutral-400 text-xs sm:text-sm md:text-base">{project.technology}</p>
                         </div>
                         <div 
-                          className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-neutral-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300"
+                          className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 shrink-0 bg-neutral-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300"
                         >
                           <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 text-white" />
                         </div>
