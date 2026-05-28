@@ -31,7 +31,7 @@ body {
 .shimmer-bg {
   background: linear-gradient(90deg, #171717 25%, #262626 50%, #171717 75%);
   background-size: 400% 100%;
-  animation: shimmer 1.6s ease-in-out infinite;
+  animation: shimmer 3s linear infinite;
 }
 
 /* Scrollbar Styling */
