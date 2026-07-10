@@ -34,6 +34,9 @@ const Navbar = () => {
       <Link href="#skills" onClick={handleLinkClick} className="text-lg font-normal">
         Skills
       </Link>
+      <Link href="#experience" onClick={handleLinkClick} className="text-lg font-normal">
+        Experience
+      </Link>
       <Link href="#projects" onClick={handleLinkClick} className="text-lg font-normal">
         Projects
       </Link>
@@ -78,6 +81,7 @@ const Navbar = () => {
       <div className="hidden md:block">
         <div className="flex gap-12 items-center">
           <NavLink href="#skills">Skills</NavLink>
+          <NavLink href="#experience">Experience</NavLink>
           <NavLink href="#projects">Projects</NavLink>
           <NavLink href="#testimonials">Testimonials</NavLink>
           <Link href="#contact" className="text-base font-normal">

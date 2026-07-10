@@ -10,6 +10,10 @@ const Footer = () => {
             Skills
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
           </Link>
+          <Link href="#experience" className="text-base font-normal relative group">
+            Experience
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300 opacity-0 group-hover:opacity-100"></span>
+          </Link>
           <Link href="#projects" className="text-base font-normal relative group">
             Projects
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 group-hover:w-full transition-all duration-300 opacity-0 group-hover:opacity-100"></span>

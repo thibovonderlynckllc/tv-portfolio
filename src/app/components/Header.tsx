@@ -26,7 +26,7 @@ const Header = () => {
         </div>
 
         <div className="text-center px-4 mb-8">
-          <p className="font-normal text-neutral-200 text-base max-w-xl">I&apos;m a Next.js Web Developer and UI/UX Designer. I build fast, scalable web apps using Next.js, TypeScript, and Tailwind.</p>
+          <p className="font-normal text-neutral-200 text-base max-w-xl">I&apos;m a web developer and UI/UX designer with a background in both design and software development. I build fast, user-friendly web apps with Next.js, TypeScript and Supabase.</p>
         </div>
 
         <div className="flex gap-4 justify-center">
@@ -60,7 +60,7 @@ const Header = () => {
               Web Developer +<br /> UX Designer.
             </span>
           </h1>
-          <p className="font-normal text-neutral-200 text-base sm:text-lg xl:text-xl max-w-xl">I&apos;m a Next.js Web Developer and UI/UX Designer. I build fast, scalable web apps using Next.js, TypeScript, and Tailwind.</p>
+          <p className="font-normal text-neutral-200 text-base sm:text-lg xl:text-xl max-w-xl">I&apos;m a web developer and UI/UX designer with a background in both design and software development. I build fast, user-friendly web apps with Next.js, TypeScript and Supabase.</p>
         </div>
         <div className="pt-8 md:pt-10 lg:pt-12 xl:pt-14 flex gap-4 md:gap-5 lg:gap-6 justify-start">
           <a href="/cv.pdf" download="Thibo_Vonderlynck_CV.pdf" className="text-orange-500 px-5 md:px-5 lg:px-6 xl:px-7 py-2 md:py-2 lg:py-3 xl:py-3 border border-orange-500 rounded-full flex items-center gap-2 hover:bg-orange-500 hover:text-white transition-all duration-300 cursor-pointer text-sm md:text-sm lg:text-base xl:text-lg">
