@@ -16,7 +16,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 2,
-    name: 'Maxim Vonderlynck',
+    name: 'Maxim',
     company: 'Mavo Productions',
     image: '/images/testimonials/maximvonderlynck.webp',
     text: 'Thibo brought our creative vision to life with a website that truly reflects who we are. Communication was smooth and the end result exceeded our expectations.',
