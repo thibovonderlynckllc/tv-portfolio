@@ -14,6 +14,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 10,
+    name: 'Spiromni',
+    description: 'Spiromni is my own startup, which I co-founded with Maxim and Pieter-Jan. We turn workplaces into interactive experiences: professional 360° virtual tours with drone footage, clickable hotspots and short employee interviews, built for manufacturing, logistics and other complex workplaces. Companies use them for employer branding, faster onboarding and showing clients and investors their site without a physical visit. Within the team I lead development: I stitch the panoramas, wire up the hotspots and interviews, and ship both the finished tours and the company website. I designed and built the site from scratch as a fast, trilingual (EN/NL/FR) experience with scroll-driven animations, case studies, a contact form, newsletter sign-up and booking calendar, all running on Cloudflare. Our first client project, a full virtual tour for Oleon in Ertvelde, is featured as a case study on the site.',
+    category: 'Full-Stack',
+    technology: 'Astro / React / TypeScript / Tailwind / GSAP / Cloudflare Workers',
+    imageUrl: '/images/projects/fullstack/spiromniposter.webp',
+    fullPageImageUrl: '/images/projects/fullstack/spiromnifullpage.webp',
+    tags: ['Startup', 'Founder', '360° Virtual Tours', 'Multilingual', 'Responsive'],
+    link: 'https://spiromni.com/',
+    badge: 'My Startup',
+  },
+  {
     id: 9,
     name: 'Ask Maeve',
     description: 'Ask Maeve is an AI-powered study platform founded by Richard Cosemans and Viktor Vanmarcke that helps students learn faster and prepare smarter for exams, offering instant summaries, personalized feedback, practice questions, and planning tools all in one place. During my 3-month school internship, I designed and coded their complete website from the ground up, working closely with the founders who provided guidance and direction throughout the process. The result is a clean, modern, and fully responsive website that reflects the brand identity and clearly communicates the platform\'s value proposition.',
