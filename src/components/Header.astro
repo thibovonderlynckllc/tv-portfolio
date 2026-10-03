@@ -1,0 +1,169 @@
+---
+import { site } from '../data/site';
+
+const links = [
+  { href: '/#work', label: 'Work' },
+  { href: '/#about', label: 'About' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<header class="header" id="top">
+  <div class="wrap header__inner">
+    <a class="header__name" href="/">Thibo Vonderlynck</a>
+    <nav class="header__nav" aria-label="Main">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="header__cv" href={site.cv} download={site.cvFileName}>
+      CV
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8 2v8.5M4.5 7.5 8 11l3.5-3.5M3 14h10"></path>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<script>
+  // On the home page the big name is already on screen, so the bar holds its own back until that scrolls away.
+  const header = document.querySelector('.header');
+  const heroName = document.querySelector('[data-hero-name]');
+
+  if (header && heroName) {
+    new IntersectionObserver(([entry]) => header.toggleAttribute('data-name-hidden', entry.isIntersecting), {
+      rootMargin: '-60px 0px 0px 0px',
+    }).observe(heroName);
+  }
+
+  // Mark the nav link of the section currently on screen.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('.header__nav a')];
+  const sections = links
+    .map((link) => document.getElementById(link.hash.slice(1)))
+    .filter((section): section is HTMLElement => Boolean(section));
+
+  if (sections.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((link) => {
+            if (link.hash === `#${entry.target.id}`) link.setAttribute('aria-current', 'true');
+            else link.removeAttribute('aria-current');
+          });
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    sections.forEach((section) => observer.observe(section));
+
+    // Above the first section nothing is current.
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (window.scrollY < sections[0].offsetTop - window.innerHeight / 2) {
+          links.forEach((link) => link.removeAttribute('aria-current'));
+        }
+      },
+      { passive: true }
+    );
+  }
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--table);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem 2rem;
+    min-height: 3.75rem;
+  }
+
+  .header__name {
+    margin-right: auto;
+    font-stretch: 125%;
+    font-weight: 800;
+    font-size: 0.9375rem;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+      opacity 0.3s,
+      visibility 0.3s;
+  }
+
+  .header[data-name-hidden] .header__name {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .header__nav {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  .header__nav a {
+    padding-block: 0.4rem;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    background: linear-gradient(var(--pencil), var(--pencil)) no-repeat left bottom / 0 2px;
+    transition: background-size 0.3s var(--ease-out);
+  }
+
+  .header__nav a:hover,
+  .header__nav a[aria-current] {
+    background-size: 100% 2px;
+  }
+
+  .header__cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .header__cv:hover {
+    background: var(--ink);
+    color: var(--table-lit);
+  }
+
+  @media (max-width: 40rem) {
+    .header__inner {
+      flex-wrap: wrap;
+      padding-block: 0.65rem 0.35rem;
+      row-gap: 0.1rem;
+    }
+
+    .header__nav {
+      order: 3;
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .header__nav a {
+      padding-block: 0.6rem;
+    }
+
+    /* Two-row bar: the name keeps its row so the bar never changes height. */
+    .header[data-name-hidden] .header__name {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  number: string;
+  sizes: string;
+  eager?: boolean;
+}
+
+const { project, number, sizes, eager = false } = Astro.props;
+---
+
+<a class="frame" href={`/projects/${project.id}`} data-frame data-category={project.category}>
+  <span class="edge frame__no">
+    <span>TV 400 &nbsp; {number}</span>
+    {project.badge && <span class="frame__mark">{project.badge}</span>}
+  </span>
+  <span class="frame__window">
+    <span class="frame__img">
+      <Image
+        src={project.image}
+        alt={`Screenshot of ${project.name}`}
+        width={1200}
+        widths={[480, 800, 1200, 1800]}
+        sizes={sizes}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : 'auto'}
+      />
+    </span>
+    <slot />
+  </span>
+  <span class="edge frame__cap">
+    <strong>{project.name}</strong>
+    <span>{project.category}</span>
+    <span>{project.technology}</span>
+  </span>
+</a>

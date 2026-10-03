@@ -1,0 +1,676 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Frame from '../components/Frame.astro';
+import Pencil from '../components/Pencil.astro';
+import Print from '../components/Print.astro';
+import { projects, categories, frameNumber } from '../data/projects';
+import { site, skills, workExperience, education, testimonials } from '../data/site';
+import portrait from '../assets/pfp.webp';
+
+
+// Column spans on a 12-column grid, so the prints vary in size as they run down the table.
+const spans = [12, 7, 5, 5, 7, 4, 4, 4, 6, 6];
+
+const filterLabels: Record<string, string> = {
+  'Frontend Development': 'Front-end',
+  'Full-Stack': 'Full-stack',
+  'Graphic Design': 'Graphic design',
+};
+
+const timeline = [
+  { title: 'Work experience', entries: workExperience },
+  { title: 'Education', entries: education },
+];
+---
+
+<Base>
+  <section class="hero">
+    <div class="wrap hero__label">
+      <h1 data-hero-name><span>Thibo</span> <span>Vonderlynck</span></h1>
+      <p>
+        Web developer and UX designer. I co-founded <a class="link" href="/projects/10">Spiromni</a>, where I lead
+        development of 360° virtual tours for workplaces, and I build fast, user-friendly web apps.
+      </p>
+      <div class="hero__actions">
+        <a class="btn" href={site.cv} download={site.cvFileName}>
+          Download CV
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M8 2v8.5M4.5 7.5 8 11l3.5-3.5M3 14h10"></path>
+          </svg>
+        </a>
+        <a class="link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="link" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- The whole roll: scroll or drag it sideways. -->
+    <div class="hero__strip" data-strip>
+      <div class="film hero__frames">
+        {
+          projects.map((project, i) => (
+            <Frame project={project} number={frameNumber(i)} sizes="(max-width: 40rem) 90vw, 55vw" eager={i < 2}>
+              {i === 0 && <Pencil kind="box" />}
+            </Frame>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="work__head">
+        <h2 class="heading">Work</h2>
+        <div class="filters" role="group" aria-label="Filter projects by type">
+          <button type="button" data-filter="all" aria-pressed="true">All</button>
+          {
+            categories.map((category) => (
+              <button type="button" data-filter={category} aria-pressed="false">
+                {filterLabels[category]}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="prints">
+        {
+          projects.map((project, index) => (
+            <div class="prints__item" style={`--span: ${spans[index % spans.length]}; --vt: work-${project.id}`}>
+              <Print
+                project={project}
+                number={frameNumber(index)}
+                feature={index === 0}
+                sizes={index === 0 ? '(max-width: 56rem) 92vw, 52rem' : '(max-width: 56rem) 92vw, 40rem'}
+              >
+                {index === 0 && <Pencil kind="tick" />}
+              </Print>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div class="film about__portrait">
+        <div class="frame">
+          <span class="edge frame__no"><span>TV 400 &nbsp; 00</span></span>
+          <span class="frame__img">
+            <Image src={portrait} alt="Portrait of Thibo Vonderlynck" widths={[320, 640]} sizes="18rem" />
+          </span>
+          <span class="edge frame__cap"><strong>Thibo Vonderlynck</strong></span>
+        </div>
+      </div>
+
+      <div class="about__text">
+        <h2 class="heading">A developer who designs</h2>
+        <p class="about__lead">
+          I'm a web developer and UI/UX designer with a background in both design and software development. I build
+          fast, user-friendly web apps with Next.js, TypeScript and Supabase.
+        </p>
+        <dl class="skills">
+          {
+            skills.map((skill) => (
+              <div>
+                <dt>{skill.title}</dt>
+                <dd>{skill.description}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="wrap">
+      <h2 class="heading">Experience and education</h2>
+      <div class="timeline">
+        {
+          timeline.map((group) => (
+            <div>
+              <h3>{group.title}</h3>
+              <ol>
+                {group.entries.map((entry) => (
+                  <li>
+                    <p class="edge timeline__period">{entry.period}</p>
+                    <div>
+                      <p class="timeline__title">{entry.title}</p>
+                      <p class="timeline__place">
+                        {entry.place} <span>{entry.kind}</span>
+                      </p>
+                      <ul>
+                        {entry.notes.map((note) => (
+                          <li>{note}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="testimonials">
+    <div class="wrap">
+      <h2 class="heading">What clients say</h2>
+      <div class="quotes">
+        {
+          testimonials.map((testimonial) => (
+            <figure>
+              <blockquote>
+                <p>{testimonial.text}</p>
+              </blockquote>
+              <figcaption>
+                <Image src={testimonial.image} alt="" width={96} height={96} />
+                <span>
+                  <strong>{testimonial.name}</strong>
+                  {testimonial.company}
+                </span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Filters: projects that do not match leave the grid, so the matching ones move to the top.
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const items = [...document.querySelectorAll<HTMLElement>('.prints__item')];
+  const allSpans = items.map((item) => item.style.getPropertyValue('--span'));
+  // Sizes for a filtered grid, in rows of two.
+  const filteredSpans = [7, 5, 5, 7, 6, 6];
+  // Holds the per-print entrance delays for the transition in progress.
+  const stagger = document.head.appendChild(document.createElement('style'));
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      const apply = () => {
+        buttons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+        let shown = 0;
+        items.forEach((item, index) => {
+          const print = item.querySelector<HTMLElement>('[data-frame]');
+          const match = filter === 'all' || print?.dataset.category === filter;
+          item.hidden = !match;
+          if (!match) return;
+          const feature = print?.classList.contains('print--feature');
+          const span = filter === 'all' || feature ? allSpans[index] : String(filteredSpans[shown++ % filteredSpans.length]);
+          item.style.setProperty('--span', span);
+        });
+      };
+      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!document.startViewTransition || calm) return apply();
+
+      // Each print gets its own transition: leavers shrink away, stayers glide to their new place,
+      // and newcomers come in one after another.
+      const wasHidden = new Set(items.filter((item) => item.hidden));
+      const root = document.documentElement;
+      root.classList.add('is-filtering');
+      // Back to "All", prints would cross the whole grid to reach their old places. Instead the
+      // current ones fade out and the full grid arrives in order: renaming breaks the old/new pairing.
+      const regroup = filter === 'all';
+      const names = items.map((item) => item.style.getPropertyValue('--vt').trim());
+      const transition = document.startViewTransition(() => {
+        apply();
+        if (regroup) items.forEach((item, index) => item.style.setProperty('--vt', `${names[index]}-back`));
+        let order = 0;
+        stagger.textContent = items
+          .filter((item) => !item.hidden && (regroup || wasHidden.has(item)))
+          .map((item) => {
+            const name = item.style.getPropertyValue('--vt').trim();
+            return `::view-transition-new(${name}):only-child { animation-delay: ${180 + order++ * (regroup ? 45 : 70)}ms; }`;
+          })
+          .join('\n');
+      });
+      transition.finished.finally(() => {
+        root.classList.remove('is-filtering');
+        stagger.textContent = '';
+        items.forEach((item, index) => item.style.setProperty('--vt', names[index]));
+      });
+    });
+  });
+
+  // Hero strip: drag it sideways with the mouse and let go to throw it. Touch and trackpads scroll it natively.
+  const strip = document.querySelector<HTMLElement>('[data-strip]');
+
+  if (strip) {
+    let startX = 0;
+    let startScroll = 0;
+    let lastX = 0;
+    let velocity = 0;
+    let down = false;
+    let moved = false;
+    let frame = 0;
+
+    const glide = () => {
+      velocity *= 0.94;
+      strip.scrollLeft -= velocity;
+      frame = Math.abs(velocity) > 0.3 ? requestAnimationFrame(glide) : 0;
+    };
+
+    strip.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'mouse' || event.button !== 0) return;
+      cancelAnimationFrame(frame);
+      down = true;
+      moved = false;
+      startX = lastX = event.clientX;
+      startScroll = strip.scrollLeft;
+      velocity = 0;
+    });
+
+    window.addEventListener('pointermove', (event) => {
+      if (!down) return;
+      const distance = event.clientX - startX;
+      if (!moved && Math.abs(distance) < 6) return;
+      moved = true;
+      strip.toggleAttribute('data-dragging', true);
+      strip.scrollLeft = startScroll - distance;
+      velocity = event.clientX - lastX;
+      lastX = event.clientX;
+    });
+
+    window.addEventListener('pointerup', () => {
+      if (!down) return;
+      down = false;
+      if (!moved) return;
+      // Let the click that ends a drag pass before the frames become links again.
+      setTimeout(() => strip.removeAttribute('data-dragging'), 0);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) frame = requestAnimationFrame(glide);
+    });
+
+    // A drag must not open the project it started on.
+    strip.addEventListener(
+      'click',
+      (event) => {
+        if (moved) event.preventDefault();
+      },
+      true
+    );
+
+    strip.addEventListener('dragstart', (event) => event.preventDefault());
+  }
+</script>
+
+<style>
+  /* Hero: the sheet label and the first strip */
+
+  .hero {
+    padding-top: clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero__label {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 1.5rem clamp(2rem, 5vw, 5rem);
+    padding-bottom: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  h1 {
+    grid-column: 1 / -1;
+    font-stretch: 125%;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hero__label p {
+    max-width: 36rem;
+    font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+    line-height: 1.5;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.75rem;
+  }
+
+  .hero__strip {
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: var(--film);
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .hero__strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero__strip[data-dragging] {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  /* While dragging, the frames are handles, not links. */
+  .hero__strip[data-dragging] :global(.frame) {
+    pointer-events: none;
+  }
+
+  .hero__strip :global(.frame),
+  .hero__strip :global(img) {
+    -webkit-user-drag: none;
+  }
+
+  .hero__frames {
+    --h: clamp(11rem, 40vh, 27rem);
+    --side: max(var(--gutter), calc((100vw - 85rem) / 2 + var(--gutter)));
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    min-width: 100%;
+    padding-inline: var(--side);
+    animation: advance 1.2s var(--ease-out) both;
+  }
+
+  .hero__frames :global(.frame) {
+    flex: none;
+    width: calc(var(--h) * 1.85);
+  }
+
+  @keyframes advance {
+    from {
+      transform: translateX(9rem);
+    }
+  }
+
+  /* Work: prints laid out on the table */
+
+  .work__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .filters button {
+    padding: 0.55rem 0.95rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    background: none;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+
+  .filters button:hover {
+    background: color-mix(in srgb, var(--ink) 10%, transparent);
+  }
+
+  .filters button[aria-pressed='true'] {
+    background: var(--ink);
+    color: var(--table-lit);
+  }
+
+  .prints {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
+    gap: clamp(2.75rem, 5vw, 4.5rem) clamp(1.25rem, 2.5vw, 2.25rem);
+  }
+
+  .prints__item {
+    grid-column: span var(--span);
+    min-width: 0;
+  }
+
+  .prints__item[hidden] {
+    display: none;
+  }
+
+  /* Laid down by hand: each print sits a touch off square. */
+  .prints__item:nth-child(3n + 2) :global(.print__mount) {
+    rotate: -0.7deg;
+  }
+
+  .prints__item:nth-child(3n) :global(.print__mount) {
+    rotate: 0.6deg;
+  }
+
+  .prints__item:nth-child(4n + 1):not(:first-child) :global(.print__mount) {
+    rotate: 0.35deg;
+  }
+
+  /* About */
+
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    align-items: start;
+    gap: 3rem clamp(2.5rem, 8vw, 8rem);
+  }
+
+  .about__portrait {
+    padding-inline: 1.5rem;
+    border-radius: 2px;
+    rotate: -2deg;
+    box-shadow: 0 1.5rem 2.5rem -1.25rem rgb(11 11 12 / 0.45);
+  }
+
+  .about__portrait .frame__img {
+    aspect-ratio: 1;
+    background: var(--film);
+  }
+
+  .about__lead {
+    max-width: 38rem;
+    margin-top: 1.5rem;
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.5;
+  }
+
+  .skills {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skills > div {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: 0.35rem 2rem;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .skills dt {
+    font-weight: 700;
+  }
+
+  .skills dd {
+    max-width: 36rem;
+    color: var(--ink-soft);
+  }
+
+  /* Experience and education */
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem clamp(2.5rem, 6vw, 6rem);
+    margin-top: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .timeline h3 {
+    padding-bottom: 0.9rem;
+    font-weight: 700;
+    font-size: 1.0625rem;
+  }
+
+  .timeline ol > li {
+    display: grid;
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    gap: 0.5rem 1.5rem;
+    padding-block: 1.4rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .timeline__period {
+    padding-top: 0.3rem;
+    color: var(--pencil-ink);
+  }
+
+  .timeline__title {
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+
+  .timeline__place {
+    margin-top: 0.2rem;
+    color: var(--ink-soft);
+  }
+
+  .timeline__place span {
+    margin-left: 0.4rem;
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--ink-soft);
+    border-radius: 2px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .timeline ul {
+    margin-top: 0.75rem;
+    color: var(--ink-soft);
+  }
+
+  /* Testimonials */
+
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(2rem, 4vw, 3.25rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .quotes figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem clamp(1.25rem, 2.5vw, 2.25rem) 0;
+    border-left: 1px solid var(--rule);
+  }
+
+  .quotes figure:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .quotes figure:last-child {
+    padding-right: 0;
+  }
+
+  .quotes blockquote {
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    line-height: 1.5;
+    font-weight: 500;
+    text-wrap: pretty;
+  }
+
+  .quotes figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.3;
+  }
+
+  .quotes figcaption img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .quotes figcaption strong {
+    display: block;
+    color: var(--ink);
+  }
+
+  /* Smaller screens */
+
+  @media (max-width: 56rem) {
+    .hero__label {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    h1 {
+      font-size: min(9.2vw, 4.5rem);
+      white-space: normal;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    .hero__actions {
+      gap: 0.75rem 1.25rem;
+    }
+
+    /* Keep the pencilled frame whole on screen, with the next one peeking in. */
+    .hero__frames {
+      --h: min(clamp(11rem, 40vh, 27rem), calc((100vw - var(--gutter) * 2 - 2rem) / 1.85));
+    }
+
+    .prints__item {
+      grid-column: 1 / -1;
+    }
+
+    .about,
+    .timeline,
+    .quotes {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about__portrait {
+      max-width: 17rem;
+    }
+
+    .quotes figure,
+    .quotes figure:first-child,
+    .quotes figure:last-child {
+      padding: 1.75rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .quotes {
+      border-top: 1px solid var(--rule);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .skills > div,
+    .timeline ol > li {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

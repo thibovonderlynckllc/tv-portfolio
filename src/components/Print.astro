@@ -1,0 +1,179 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  number: string;
+  sizes: string;
+  feature?: boolean;
+}
+
+const { project, number, sizes, feature = false } = Astro.props;
+---
+
+<a
+  class:list={['print', { 'print--feature': feature }]}
+  href={`/projects/${project.id}`}
+  data-frame
+  data-category={project.category}
+>
+  <span class="print__mount">
+    <span class="print__img">
+      <Image
+        src={project.image}
+        alt={`Screenshot of ${project.name}`}
+        width={1200}
+        widths={[480, 800, 1200, 1800]}
+        sizes={sizes}
+        loading="lazy"
+      />
+    </span>
+    <slot />
+  </span>
+  <span class="print__cap">
+    <span class="print__title">
+      <span class="edge print__no">{number}</span>
+      <strong>{project.name}</strong>
+      {project.badge && <span class="edge print__badge">{project.badge}</span>}
+    </span>
+    {feature && project.role && <span class="print__role">{project.role}</span>}
+    <span class="edge print__meta">{project.category} · {project.technology}</span>
+    {
+      feature && (
+        <span class="link print__more">
+          View project
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 11 11 5M5.5 5H11v5.5" />
+          </svg>
+        </span>
+      )
+    }
+  </span>
+</a>
+
+<style>
+  /* A print: the screenshot on a white mount, lying on the table */
+  .print {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    text-decoration: none;
+  }
+
+  .print__mount {
+    position: relative;
+    display: block;
+    padding: clamp(0.4rem, 0.8vw, 0.6rem);
+    background: #fff;
+    border-radius: 2px;
+    box-shadow:
+      0 0 0 1px rgb(11 11 12 / 0.06),
+      0 1.5rem 2.5rem -1.5rem rgb(11 11 12 / 0.4);
+    transition:
+      translate 0.4s var(--ease-out),
+      rotate 0.4s var(--ease-out),
+      box-shadow 0.4s var(--ease-out);
+  }
+
+  .print:hover .print__mount,
+  .print:focus-visible .print__mount {
+    translate: 0 -0.3rem;
+    rotate: 0deg;
+    box-shadow:
+      0 0 0 1px rgb(11 11 12 / 0.08),
+      0 2.25rem 3rem -1.5rem rgb(11 11 12 / 0.5);
+  }
+
+  .print__img {
+    display: block;
+    aspect-ratio: 1.85;
+    overflow: hidden;
+    background: var(--rule);
+  }
+
+  .print__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition:
+      filter 0.5s var(--ease-out),
+      opacity 0.5s var(--ease-out);
+  }
+
+  .print__cap {
+    display: grid;
+    gap: 0.35rem;
+    transition: opacity 0.5s var(--ease-out);
+  }
+
+  .print__title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.7rem;
+  }
+
+  .print__no {
+    color: var(--pencil-ink);
+  }
+
+  .print__title strong {
+    font-stretch: 125%;
+    font-weight: 800;
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  .print__badge {
+    padding: 0.15rem 0.4rem;
+    border: 1.5px solid var(--pencil-ink);
+    border-radius: 2px;
+    color: var(--pencil-ink);
+    font-size: 0.6875rem;
+  }
+
+  .print__meta {
+    color: var(--ink-soft);
+  }
+
+  /* The feature: a large print with its caption beside it */
+  .print--feature {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    align-items: end;
+    gap: 1.5rem clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .print--feature .print__cap {
+    gap: 0.6rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .print--feature .print__title strong {
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .print__role {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .print__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    width: fit-content;
+  }
+
+  @media (max-width: 56rem) {
+    .print--feature {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

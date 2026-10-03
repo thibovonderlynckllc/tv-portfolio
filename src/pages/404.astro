@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found | Thibo Vonderlynck">
+  <section class="wrap missing">
+    <h1 class="heading">This frame is blank</h1>
+    <p>The page you are looking for does not exist or has moved.</p>
+    <a class="btn" href="/#work">Back to the work</a>
+  </section>
+</Base>
+
+<style>
+  .missing {
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+    padding-top: clamp(4rem, 12vw, 9rem);
+  }
+</style>

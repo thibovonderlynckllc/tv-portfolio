@@ -1,0 +1,220 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Print from '../../components/Print.astro';
+import { projects, frameNumber } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project, index) => ({
+    params: { id: String(project.id) },
+    props: { index },
+  }));
+}
+
+const { index } = Astro.props;
+const project = projects[index];
+const neighbours = [
+  (index - 1 + projects.length) % projects.length,
+  (index + 1) % projects.length,
+];
+
+const isWebsite = project.category !== 'Graphic Design';
+
+const provenance = [
+  { label: 'Frame', value: `${frameNumber(index)} of ${projects.length}` },
+  { label: 'Type', value: project.category },
+  project.role && { label: 'Role', value: project.role },
+  { label: 'Stack', value: project.technology },
+].filter((row): row is { label: string; value: string } => Boolean(row));
+---
+
+<Base
+  title={`${project.name} | Thibo Vonderlynck`}
+  description={`${project.name}, a project by Thibo Vonderlynck. ${project.description.slice(0, 120)}`}
+>
+  <article class="wrap project">
+    <div class="project__info">
+      <a class="link project__back" href="/#work">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M13 8H3M7 4 3 8l4 4"></path>
+        </svg>
+        Back to the work
+      </a>
+
+      <h1 class="heading">{project.name}</h1>
+      {project.badge && <p class="edge project__badge">{project.badge}</p>}
+
+      <dl class="project__facts">
+        {
+          provenance.map((row) => (
+            <div>
+              <dt class="edge">{row.label}</dt>
+              <dd>{row.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <p class="project__text">{project.description}</p>
+
+      <ul class="project__tags">
+        {project.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+
+      {
+        project.link && isWebsite && (
+          <a class="btn" href={project.link} target="_blank" rel="noopener noreferrer">
+            Visit {project.name}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 11 11 5M5.5 5H11v5.5"></path>
+            </svg>
+          </a>
+        )
+      }
+    </div>
+
+    <div class="project__print">
+      <Image
+        src={project.fullPageImage}
+        alt={`Full screenshot of ${project.name}`}
+        width={Math.min(1400, project.fullPageImage.width)}
+        widths={[640, 960, 1400]}
+        sizes="(max-width: 60rem) 92vw, 46rem"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </article>
+
+  <nav class="wrap more" aria-label="More projects">
+    <h2 class="heading">More work</h2>
+    <div class="more__prints">
+      {
+        neighbours.map((i) => (
+          <Print project={projects[i]} number={frameNumber(i)} sizes="(max-width: 40rem) 92vw, 40rem" />
+        ))
+      }
+    </div>
+  </nav>
+</Base>
+
+<style>
+  .project {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    align-items: start;
+    gap: 3rem clamp(2.5rem, 6vw, 6rem);
+    padding-top: clamp(2rem, 5vw, 4rem);
+  }
+
+  .project__info {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .project__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  h1 {
+    margin-top: clamp(1.75rem, 4vw, 3rem);
+    font-size: clamp(2.25rem, 5.4vw, 4.5rem);
+    line-height: 0.95;
+    overflow-wrap: anywhere;
+  }
+
+  .project__badge {
+    display: inline-block;
+    margin-top: 1.1rem;
+    padding: 0.35rem 0.6rem;
+    border: 1.5px solid var(--pencil-ink);
+    border-radius: 2px;
+    color: var(--pencil-ink);
+  }
+
+  .project__facts {
+    margin-top: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .project__facts > div {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .project__facts dt {
+    padding-top: 0.3rem;
+    color: var(--ink-soft);
+  }
+
+  .project__facts dd {
+    font-weight: 600;
+  }
+
+  .project__text {
+    max-width: 36rem;
+    margin-top: 1.75rem;
+  }
+
+  .project__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-block: 1.5rem 2rem;
+  }
+
+  .project__tags li {
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--ink-soft);
+    border-radius: 2px;
+    color: var(--ink-soft);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* The enlargement: a print lying on the table */
+  .project__print {
+    padding: clamp(0.5rem, 1.2vw, 0.9rem);
+    background: #fff;
+    border-radius: 2px;
+    box-shadow:
+      0 0 0 1px rgb(11 11 12 / 0.06),
+      0 2rem 3.5rem -1.75rem rgb(11 11 12 / 0.45);
+  }
+
+  .project__print img {
+    width: 100%;
+  }
+
+  .more {
+    margin-top: clamp(4.5rem, 10vw, 8rem);
+  }
+
+  .more__prints {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem clamp(1.25rem, 2.5vw, 2.25rem);
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  @media (max-width: 60rem) {
+    .project {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .project__info {
+      position: static;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .more__prints {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
