@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import archivo from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Contact from '../components/Contact.astro';
 
@@ -23,8 +24,9 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#e6ecee" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="preload" href={archivo} as="font" type="font/woff2" crossorigin />
   </head>
-  <body>
+  <body id="top">
     <Header />
     <main>
       <slot />

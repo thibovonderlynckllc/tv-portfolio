@@ -6,6 +6,8 @@ import omegatrading from '../assets/testimonials/omegatrading.webp';
 export const site = {
   name: 'Thibo Vonderlynck',
   email: 'thibovonderlynckllc@gmail.com',
+  phone: '+32488883120',
+  phoneDisplay: '+32 488 88 31 20',
   github: 'https://github.com/ThiboVonderlynck',
   linkedin: 'https://www.linkedin.com/in/thibo-vonderlynck-9654a52bb/',
   cv: '/cv.pdf',
